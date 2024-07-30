@@ -15,6 +15,7 @@ header {
   justify-content: center;
   gap: 1rem;
   border-bottom: 4px solid #0ea5e9;
+  background-color: #e0f2fe;
 }
 header h1 {
   font-size: 4rem;
@@ -26,11 +27,56 @@ header .do-logo {
   text-decoration: underline;
   text-underline-offset: 0.5rem;
 }
-
 header .do-logo,
 .header-icon {
   color: #22c55e;
 }
 .header-icon {
   font-size: 5rem;
+}
+
+nav {
+  padding: 1.5rem 3rem;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  width: max(250px, 18%);
+  height: 100vh;
+  border-right: 4px solid #f97316;
+  background-color: #ffedd5;
+}
+nav .list-icon {
+  font-size: 3.6rem;
+}
+nav .projects-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+nav .projects-title {
+  padding: 0 0 2rem 0;
+  border-bottom: 2px solid #f97316;
+}
+
+nav h2 span {
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+}
+nav .projects-list .project {
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: 0.15s ease-in-out;
+}
+nav .projects-list .project:hover {
+  background-color: #fdba74;
+}
+nav .projects-list .project:active {
+  background-color: #fb923c;
+}
+nav .projects-list .project {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 }
