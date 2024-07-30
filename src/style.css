@@ -26,6 +26,11 @@ header h1 {
 header .do-logo {
   text-decoration: underline;
   text-underline-offset: 0.5rem;
+  transition: 0.2s ease-in-out;
+  cursor: crosshair;
+}
+header .do-logo:hover {
+  background-color: #bbf7d0;
 }
 header .do-logo,
 .header-icon {
@@ -63,20 +68,37 @@ nav h2 span {
   text-decoration: underline;
   text-underline-offset: 0.5rem;
 }
-nav .projects-list .project {
+nav .projects-list .project,
+nav .add-project {
   margin-top: 1.5rem;
   cursor: pointer;
   transition: 0.15s ease-in-out;
 }
-nav .projects-list .project:hover {
+nav .projects-list .project:hover,
+nav .add-project:hover {
   background-color: #fdba74;
 }
-nav .projects-list .project:active {
+nav .projects-list .project:active,
+nav .add-project:active {
   background-color: #fb923c;
 }
-nav .projects-list .project {
+nav .projects-list .project,
+nav .add-project {
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 1rem;
+}
+nav .add-project {
+  margin-top: 2rem;
+  justify-content: center;
+  color: #16a34a;
+}
+nav .add-project span {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+nav hr {
+  margin-top: 3rem;
+  height: 2px;
+  border: 1px solid #f97316;
 }
