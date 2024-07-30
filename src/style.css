@@ -8,7 +8,19 @@ html {
   font-size: 62.5%;
 }
 
+body {
+  overflow-y: hidden;
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-areas:
+    "logo logo"
+    "nav content";
+  grid-template-columns: max(250px, 18%) 1fr;
+}
+
 header {
+  grid-area: logo;
   padding: 1.5rem 0;
   display: flex;
   align-items: center;
@@ -41,11 +53,11 @@ header .do-logo,
 }
 
 nav {
+  grid-area: nav;
   padding: 1.5rem 3rem;
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
-  width: max(250px, 18%);
   height: 100vh;
   border-right: 4px solid #f97316;
   background-color: #ffedd5;
@@ -101,4 +113,9 @@ nav hr {
   margin-top: 3rem;
   height: 2px;
   border: 1px solid #f97316;
+}
+
+main {
+  background-color: #ede9fe;
+  grid-area: content;
 }
