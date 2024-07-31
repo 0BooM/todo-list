@@ -132,6 +132,7 @@ main ul li {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 6px 6px 10px -6px rgba(66, 68, 90, 1);
 }
 main ul li div {
   display: flex;
@@ -210,6 +211,7 @@ main .add-item {
   border-radius: 5rem;
   margin: 0 auto 0 auto;
   font-weight: bold;
+  box-shadow: 6px 6px 10px -6px rgba(66, 68, 90, 1);
 }
 
 main .add-item:hover {
