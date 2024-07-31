@@ -143,7 +143,7 @@ main ul li .right-section {
 }
 
 main ul li input {
-  border: 2px solid #0ea5e9;
+  border: 2px solid black;
   width: 2.5rem;
   height: 2.5rem;
   appearance: none;
@@ -155,7 +155,8 @@ main ul li input {
 main ul li input,
 main ul li .remove-icon,
 nav .projects-list .project,
-nav .add-project {
+nav .add-project,
+main .add-item {
   transition: 0.15s ease-in-out;
 }
 
@@ -195,4 +196,25 @@ main ul li .remove-icon:hover {
 .todo-done .left-section,
 .todo-done .right-section p {
   text-decoration: line-through;
+}
+
+main .add-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  background-color: white;
+  border-radius: 5rem;
+  margin: 0 auto 0 auto;
+  font-weight: bold;
+}
+
+main .add-item:hover {
+  background-color: rgb(226, 226, 226);
+}
+main .add-item:active {
+  background-color: rgb(177, 177, 177);
 }
