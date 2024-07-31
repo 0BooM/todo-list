@@ -7,6 +7,7 @@ const ProjectManager = (function () {
   function showInputOnAddButtonClick() {
     let addProjectBtn = document.querySelector(".add-project");
     let displaySettingBtn = document.querySelector(".display-setting");
+    displaySettingBtn.style.display = "none";
     addProjectBtn.addEventListener("click", () => {
       if (displaySettingBtn.style.display == "none")
         displaySettingBtn.style.display = "inherit";
