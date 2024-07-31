@@ -113,6 +113,19 @@ nav hr {
   height: 2px;
   border: 1px solid #f97316;
 }
+nav label {
+  margin-top: 1rem;
+}
+nav .add-project-input {
+  font-size: 1.6rem;
+  padding: 0.2rem 0.6rem;
+  font-weight: bold;
+}
+.display-setting {
+  display: flex;
+  flex-direction: column;
+  display: none;
+}
 
 main {
   grid-area: content;
