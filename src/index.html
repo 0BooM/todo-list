@@ -48,5 +48,26 @@
       </div>
     </nav>
     <main class="project-content"></main>
+    <dialog open>
+      <span class="close-icon material-symbols-outlined"> close </span>
+      <form action="">
+        <label for="todo-title">
+          To-Do Item Name:
+          <input type="text" name="todo-title" id="todo-title" />
+        </label>
+        <label for="todo-duedate">
+          To-Do Item Duedate:
+          <input type="date" name="todo-duedate" id="todo-duedate" />
+        </label>
+        <label for="todo-priority">
+          To-Do Item Priority:
+          <select name="todo-priority" id="todo-priority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+      </form>
+    </dialog>
   </body>
 </html>
