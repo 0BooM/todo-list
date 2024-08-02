@@ -1,8 +1,11 @@
 import Project from "./project.js";
-
+import todoItemManager from "./todoItemManager.js";
 //Project manager is about managin the navbar on the left side. It shows users' projects and manages adding them and also showing their contents
 
-let projects = [];
+let projects = [
+  new Project("Sample Project 1"),
+  new Project("Sample Project 2"),
+];
 const ProjectManager = (function () {
   function showInputOnAddButtonClick() {
     let addProjectBtn = document.querySelector(".add-project");
@@ -60,8 +63,31 @@ const ProjectManager = (function () {
 
   function showProjectsContent(project, projectDiv) {
     projectDiv.addEventListener("click", () => {
+      console.log(project);
       console.log("Project ID:", project.projectId);
       console.log("Project Title:", project.title);
+      let projectContent = document.querySelector(".project-content");
+      projectContent.innerHTML = "";
+      let todoList = document.createElement("ul");
+      todoList.classList.add("to-do-list");
+      projectContent.appendChild(todoList);
+
+      let projectItems = project.items;
+      projectItems.forEach((item) => {
+        let todoElement = todoItemManager.renderItem(item);
+        todoList.appendChild(todoElement); // Append the rendered item to the list
+      });
+
+      let addItemBtn = document.createElement("button");
+      addItemBtn.classList.add("add-item");
+      addItemBtn.innerHTML = `<span class="material-symbols-outlined"> add </span>
+        <p>Add item</p>`;
+      projectContent.appendChild(addItemBtn);
+      addItemBtn.addEventListener("click", () => {
+        console.log(
+          `Add item belongs to: ${project.projectId}. ${project.title}`
+        );
+      });
     });
   }
   return {
@@ -71,3 +97,4 @@ const ProjectManager = (function () {
 })();
 
 export default ProjectManager;
+export { projects };
