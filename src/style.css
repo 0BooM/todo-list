@@ -170,7 +170,10 @@ main ul li .sections {
 }
 
 main ul li .right-section {
-  gap: 5rem;
+  gap: 1rem;
+}
+main ul li .right-section p {
+  margin-right: 5rem;
 }
 
 main ul li input {
@@ -185,6 +188,7 @@ main ul li input {
 
 main ul li input,
 main ul li .remove-icon,
+main ul li .expand-icon,
 nav .projects-list .project,
 nav .add-project,
 main .add-item {
@@ -222,6 +226,15 @@ main ul .remove-icon {
 }
 main ul li .remove-icon:hover {
   color: rgb(150, 0, 0);
+}
+
+main ul li .expand-icon {
+  color: gray;
+  font-size: 3rem;
+  cursor: pointer;
+}
+main ul li .expand-icon:hover {
+  color: black;
 }
 
 .todo-done .left-section,
