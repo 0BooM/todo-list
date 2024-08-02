@@ -263,3 +263,63 @@ main .add-item:hover {
 main .add-item:active {
   background-color: rgb(177, 177, 177);
 }
+
+dialog {
+  font-weight: bold;
+  font-size: 1.4rem;
+  border: 2px solid #0ea5e9;
+  padding: 5rem 4rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  position: fixed; /* Changed to fixed to center properly */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* Ensure it's above other elements */
+  background: white;
+  display: none;
+}
+dialog[open] {
+  display: block;
+}
+
+dialog .close-icon {
+  color: white;
+  position: absolute;
+  text-align: right;
+  cursor: pointer;
+  right: 0px;
+  top: -0px;
+  padding: 0.5rem;
+  background-color: rgb(255, 60, 60);
+  border-radius: 0 0.8rem 0 1rem;
+  transition: 0.2s;
+}
+dialog .close-icon:hover {
+  background-color: red;
+}
+dialog .close-icon:active {
+  background-color: rgb(200, 0, 0);
+}
+
+dialog input,
+dialog select {
+  background-color: white;
+  border: 1px solid black;
+  font-size: 1.6rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.4rem;
+}
+dialog form,
+dialog form label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+dialog form input {
+  margin-top: 0.4rem;
+}
+dialog form label {
+  margin-bottom: 1.5rem;
+}
