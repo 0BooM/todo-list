@@ -75,7 +75,7 @@ const ProjectManager = (function () {
       let projectItems = project.items;
       projectItems.forEach((item) => {
         let todoElement = todoItemManager.renderItem(item);
-        todoList.appendChild(todoElement); // Append the rendered item to the list
+        todoList.appendChild(todoElement);
       });
 
       let addItemBtn = document.createElement("button");
@@ -90,9 +90,16 @@ const ProjectManager = (function () {
       });
     });
   }
+
+  function init() {
+    showProjectsOnNavbar();
+    addNewProject();
+    showInputOnAddButtonClick();
+  }
   return {
     showInputOnAddButtonClick,
     addNewProject,
+    init,
   };
 })();
 
