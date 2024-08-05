@@ -2,7 +2,7 @@ import { projects } from "./projectManager.js";
 import Project from "./project.js";
 
 const todoItemManager = (() => {
-  function renderItem(item) {
+  function renderItem(item, project, todoList) {
     let todoElement = document.createElement("li");
     todoElement.classList.add("to-do-element");
     let sectionDiv = document.createElement("div");
@@ -15,10 +15,12 @@ const todoItemManager = (() => {
 
     let rightSection = document.createElement("div");
     rightSection.classList.add("right-section");
-    rightSection.innerHTML = `<p class="due-date">Due: 04-08-2024</p>
-              <span class="remove-icon material-symbols-outlined">
-                delete
-              </span>`;
+    rightSection.innerHTML = `<p class="due-date">Due: 04-08-2024</p>`;
+
+    let removeBtn = document.createElement("span");
+    removeBtn.classList.add("remove-icon", "material-symbols-outlined");
+    removeBtn.innerHTML = `delete`;
+    rightSection.append(removeBtn);
 
     let expandBtn = document.createElement("span");
     expandBtn.classList.add("expand-icon", "material-symbols-outlined");
@@ -34,6 +36,10 @@ const todoItemManager = (() => {
     sectionDiv.appendChild(rightSection);
 
     expandDescOfItem(todoElement, desc, expandBtn);
+    removeBtn.addEventListener("click", () => {
+      removeItem(project, item, todoElement, todoList);
+    });
+
     return todoElement;
   }
 
@@ -48,6 +54,7 @@ const todoItemManager = (() => {
       }
     });
   }
+
   function showAddItemDialog(addItemBtn) {
     let dialog = document.querySelector("#add-item-dialog");
     addItemBtn.addEventListener("click", () => {
@@ -55,6 +62,7 @@ const todoItemManager = (() => {
       console.log(addItemBtn);
     });
   }
+
   function closeAddItemDialog() {
     let closeDialogBtn = document.querySelector(".close-icon");
     let dialog = document.querySelector("#add-item-dialog");
@@ -74,7 +82,12 @@ const todoItemManager = (() => {
     let dueDate = document.querySelector("#todo-duedate");
     let itemPriority = document.querySelector("#todo-priority");
     let itemDesc = document.querySelector("#todo-desc");
-    submitBtn.addEventListener("click", (e) => {
+
+    // Usuwamy poprzednie nasłuchiwacze
+    let newSubmitBtn = submitBtn.cloneNode(true);
+    submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
+
+    newSubmitBtn.addEventListener("click", (e) => {
       e.preventDefault();
       if (itemName.value != "" || dueDate.value != "") {
         project.addItem(itemName.value, itemDesc.value);
@@ -89,9 +102,17 @@ const todoItemManager = (() => {
     ulTodoList.innerHTML = "";
     let projectItems = project.items;
     projectItems.forEach((item) => {
-      let todoElement = todoItemManager.renderItem(item);
+      let todoElement = todoItemManager.renderItem(item, project, ulTodoList);
       ulTodoList.appendChild(todoElement);
     });
+  }
+
+  function removeItem(project, item, todoElement, todoList) {
+    const itemIndex = project.items.indexOf(item);
+    if (itemIndex > -1) {
+      project.items.splice(itemIndex, 1);
+    }
+    todoList.removeChild(todoElement);
   }
 
   return {
@@ -99,6 +120,7 @@ const todoItemManager = (() => {
     showAddItemDialog,
     closeAddItemDialog,
     submitInputsDialog,
+    removeItem,
   };
 })();
 
