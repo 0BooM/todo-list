@@ -83,11 +83,10 @@ const ProjectManager = (function () {
       addItemBtn.innerHTML = `<span class="material-symbols-outlined"> add </span>
         <p>Add item</p>`;
       projectContent.appendChild(addItemBtn);
-      addItemBtn.addEventListener("click", () => {
-        console.log(
-          `Add item belongs to: ${project.projectId}. ${project.title}`
-        );
-      });
+
+      todoItemManager.showAddItemDialog(addItemBtn);
+      todoItemManager.closeAddItemDialog();
+      todoItemManager.submitInputsDialog(project, todoList);
     });
   }
 
