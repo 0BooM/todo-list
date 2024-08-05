@@ -1,4 +1,5 @@
 import { projects } from "./projectManager.js";
+import Project from "./project.js";
 
 const todoItemManager = (() => {
   function renderItem(item) {
@@ -47,8 +48,57 @@ const todoItemManager = (() => {
       }
     });
   }
+  function showAddItemDialog(addItemBtn) {
+    let dialog = document.querySelector("#add-item-dialog");
+    addItemBtn.addEventListener("click", () => {
+      dialog.showModal();
+      console.log(addItemBtn);
+    });
+  }
+  function closeAddItemDialog() {
+    let closeDialogBtn = document.querySelector(".close-icon");
+    let dialog = document.querySelector("#add-item-dialog");
+    closeDialogBtn.addEventListener("click", () => {
+      if (dialog.open) dialog.close();
+    });
+  }
+
+  function submitInputsDialog(project, todoList) {
+    let ulTodoList = document.querySelector(".to-do-list");
+
+    let submitBtn = document.querySelector("#submit-button");
+    let dialog = document.querySelector("#add-item-dialog");
+
+    let form = document.querySelector("form");
+    let itemName = document.querySelector("#todo-title");
+    let dueDate = document.querySelector("#todo-duedate");
+    let itemPriority = document.querySelector("#todo-priority");
+    let itemDesc = document.querySelector("#todo-desc");
+    submitBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (itemName.value != "" || dueDate.value != "") {
+        project.addItem(itemName.value, itemDesc.value);
+        form.reset();
+        dialog.close();
+        renderAllItems(ulTodoList, project);
+      }
+    });
+  }
+
+  function renderAllItems(ulTodoList, project) {
+    ulTodoList.innerHTML = "";
+    let projectItems = project.items;
+    projectItems.forEach((item) => {
+      let todoElement = todoItemManager.renderItem(item);
+      ulTodoList.appendChild(todoElement);
+    });
+  }
+
   return {
     renderItem,
+    showAddItemDialog,
+    closeAddItemDialog,
+    submitInputsDialog,
   };
 })();
 
