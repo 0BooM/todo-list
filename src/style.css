@@ -274,7 +274,7 @@ dialog {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   position: fixed; /* Changed to fixed to center properly */
   top: 50%;
-  left: 50%;
+  left: 59%;
   transform: translate(-50%, -50%);
   z-index: 1000; /* Ensure it's above other elements */
   background: white;
@@ -304,7 +304,8 @@ dialog .close-icon:active {
 }
 
 dialog input,
-dialog select {
+dialog select,
+dialog textarea {
   background-color: white;
   border: 1px solid black;
   font-size: 1.6rem;
@@ -318,7 +319,9 @@ dialog form label {
   justify-content: center;
 }
 
-dialog form input {
+dialog form input,
+dialog form select,
+dialog form textarea {
   margin-top: 0.4rem;
 }
 dialog form label {

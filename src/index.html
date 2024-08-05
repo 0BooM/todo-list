@@ -48,12 +48,17 @@
       </div>
     </nav>
     <main class="project-content"></main>
-    <dialog open>
+    <dialog id="add-item-dialog">
       <span class="close-icon material-symbols-outlined"> close </span>
       <form action="">
         <label for="todo-title">
           To-Do Item Name:
-          <input type="text" name="todo-title" id="todo-title" />
+          <input
+            type="text"
+            name="todo-title"
+            id="todo-title"
+            placeholder="At least 1 character"
+          />
         </label>
         <label for="todo-duedate">
           To-Do Item Duedate:
@@ -67,7 +72,16 @@
             <option value="high">High</option>
           </select>
         </label>
-        <input type="submit" value="SUBMIT" />
+        <label for="todo-desc">
+          Description:
+          <textarea
+            name="todo-desc"
+            id="todo-desc"
+            placeholder="Your description..."
+            rows="3"
+          ></textarea>
+        </label>
+        <input type="submit" value="SUBMIT" id="submit-button" />
       </form>
     </dialog>
   </body>
