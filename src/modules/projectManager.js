@@ -1,11 +1,12 @@
 import Project from "./project.js";
 import todoItemManager from "./todoItemManager.js";
-//Project manager is about managin the navbar on the left side. It shows users' projects and manages adding them and also showing their contents
 
 let projects = [
   new Project("Sample Project 1"),
   new Project("Sample Project 2"),
 ];
+let activeProject = null; // Dodano zmienną przechowującą aktualnie aktywny projekt
+
 const ProjectManager = (function () {
   function showInputOnAddButtonClick() {
     let addProjectBtn = document.querySelector(".add-project");
@@ -19,7 +20,6 @@ const ProjectManager = (function () {
     });
   }
 
-  //Operates on Add project button
   function addNewProject() {
     let displaySettingBtn = document.querySelector(".display-setting");
     let projectName = document.querySelector("#add-project-input");
@@ -37,7 +37,7 @@ const ProjectManager = (function () {
       }
     });
   }
-  //Makes navbar responsible for adding another projects
+
   function showProjectsOnNavbar() {
     let projectsList = document.querySelector(".projects-list");
     projectsList.innerHTML = "";
@@ -57,37 +57,35 @@ const ProjectManager = (function () {
       projectDiv.appendChild(projectName);
       projectsList.appendChild(projectDiv);
 
-      showProjectsContent(project, projectDiv);
+      projectDiv.addEventListener("click", () =>
+        setActiveProject(project, projectDiv)
+      );
     });
   }
 
-  function showProjectsContent(project, projectDiv) {
-    projectDiv.addEventListener("click", () => {
-      console.log(project);
-      console.log("Project ID:", project.projectId);
-      console.log("Project Title:", project.title);
-      let projectContent = document.querySelector(".project-content");
-      projectContent.innerHTML = "";
-      let todoList = document.createElement("ul");
-      todoList.classList.add("to-do-list");
-      projectContent.appendChild(todoList);
+  function setActiveProject(project, projectDiv) {
+    // activeProject = project;
+    let projectContent = document.querySelector(".project-content");
+    projectContent.innerHTML = "";
+    let todoList = document.createElement("ul");
+    todoList.classList.add("to-do-list");
+    projectContent.appendChild(todoList);
 
-      let projectItems = project.items;
-      projectItems.forEach((item) => {
-        let todoElement = todoItemManager.renderItem(item);
-        todoList.appendChild(todoElement);
-      });
-
-      let addItemBtn = document.createElement("button");
-      addItemBtn.classList.add("add-item");
-      addItemBtn.innerHTML = `<span class="material-symbols-outlined"> add </span>
-        <p>Add item</p>`;
-      projectContent.appendChild(addItemBtn);
-
-      todoItemManager.showAddItemDialog(addItemBtn);
-      todoItemManager.closeAddItemDialog();
-      todoItemManager.submitInputsDialog(project, todoList);
+    let projectItems = project.items;
+    projectItems.forEach((item) => {
+      let todoElement = todoItemManager.renderItem(item, project, todoList);
+      todoList.appendChild(todoElement);
     });
+
+    let addItemBtn = document.createElement("button");
+    addItemBtn.classList.add("add-item");
+    addItemBtn.innerHTML = `<span class="material-symbols-outlined"> add </span>
+      <p>Add item</p>`;
+    projectContent.appendChild(addItemBtn);
+
+    todoItemManager.showAddItemDialog(addItemBtn);
+    todoItemManager.closeAddItemDialog();
+    todoItemManager.submitInputsDialog(project, todoList);
   }
 
   function init() {
@@ -95,6 +93,7 @@ const ProjectManager = (function () {
     addNewProject();
     showInputOnAddButtonClick();
   }
+
   return {
     showInputOnAddButtonClick,
     addNewProject,
