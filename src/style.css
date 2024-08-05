@@ -191,7 +191,8 @@ main ul li .remove-icon,
 main ul li .expand-icon,
 nav .projects-list .project,
 nav .add-project,
-main .add-item {
+main .add-item,
+dialog input[type="submit"] {
   transition: 0.15s ease-in-out;
 }
 
@@ -322,4 +323,18 @@ dialog form input {
 }
 dialog form label {
   margin-bottom: 1.5rem;
+}
+
+dialog input[type="submit"] {
+  padding: 0.6rem 0rem;
+  font-weight: bold;
+  color: white;
+  background-color: #22c55e;
+  cursor: pointer;
+}
+dialog input[type="submit"]:hover {
+  background-color: #16a34a;
+}
+dialog input[type="submit"]:active {
+  background-color: #00792c;
 }
