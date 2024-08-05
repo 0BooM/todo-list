@@ -5,7 +5,6 @@ let projects = [
   new Project("Sample Project 1"),
   new Project("Sample Project 2"),
 ];
-let activeProject = null; // Dodano zmienną przechowującą aktualnie aktywny projekt
 
 const ProjectManager = (function () {
   function showInputOnAddButtonClick() {
@@ -64,7 +63,6 @@ const ProjectManager = (function () {
   }
 
   function setActiveProject(project, projectDiv) {
-    // activeProject = project;
     let projectContent = document.querySelector(".project-content");
     projectContent.innerHTML = "";
     let todoList = document.createElement("ul");
