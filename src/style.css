@@ -209,7 +209,8 @@ dialog input[type="submit"] {
 main ul li input:hover {
   border-color: #00792c;
 }
-main ul li input:checked::before {
+main ul li input:checked::before,
+.todo-done input[type="checkbox"]::before {
   content: "✔";
   display: block;
   font-size: 5rem;
@@ -226,7 +227,8 @@ main ul li input:checked::before {
   justify-content: center;
 }
 
-main ul li input:checked {
+main ul li input:checked,
+.todo-done input[type="checkbox"] {
   border: 2px solid #16a34a;
 }
 
