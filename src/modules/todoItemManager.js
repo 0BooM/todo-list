@@ -5,7 +5,12 @@ const todoItemManager = (() => {
   function renderItem(item, project, todoList) {
     let todoElement = document.createElement("li");
     todoElement.classList.add("to-do-element");
+
     todoElement.classList.add(item.priority + "-priority");
+    if (item.status === "done") {
+      todoElement.classList.add("todo-done");
+    }
+
     let sectionDiv = document.createElement("div");
     sectionDiv.classList.add("sections");
 
@@ -94,7 +99,7 @@ const todoItemManager = (() => {
     let dueDate = document.querySelector("#todo-duedate");
     let itemPriority = document.querySelector("#todo-priority");
     let itemDesc = document.querySelector("#todo-desc");
-
+    let itemChecked = document.querySelector(".to-do-checbox");
     let newSubmitBtn = submitBtn.cloneNode(true);
     submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
 
@@ -105,7 +110,8 @@ const todoItemManager = (() => {
           itemName.value,
           itemDesc.value,
           dueDate.value,
-          itemPriority.value
+          itemPriority.value,
+          itemChecked.checked
         );
         form.reset();
         dialog.close();
