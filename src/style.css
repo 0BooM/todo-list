@@ -99,6 +99,10 @@ nav .add-project {
   align-items: center;
   gap: 1rem;
 }
+nav .projects-list .project {
+  justify-content: space-between;
+  padding: 0.4rem 0;
+}
 nav .add-project {
   margin-top: 2rem;
   justify-content: center;
@@ -202,7 +206,8 @@ main ul li .expand-icon,
 nav .projects-list .project,
 nav .add-project,
 main .add-item,
-dialog input[type="submit"] {
+dialog input[type="submit"],
+.remove-icon {
   transition: 0.15s ease-in-out;
 }
 
@@ -232,15 +237,20 @@ main ul li input:checked,
   border: 2px solid #16a34a;
 }
 
-main ul .remove-icon {
+main ul .remove-icon,
+.remove-icon {
   color: rgb(255, 0, 0);
   font-size: 3rem;
   cursor: pointer;
 }
-main ul li .remove-icon:hover {
+
+.material-symbols-outlined main ul li .remove-icon:hover {
   color: rgb(150, 0, 0);
 }
 
+.project .material-symbols-outlined {
+  font-size: 3rem;
+}
 main ul li .expand-icon {
   color: gray;
   font-size: 3rem;
