@@ -5,6 +5,7 @@ const todoItemManager = (() => {
   function renderItem(item, project, todoList) {
     let todoElement = document.createElement("li");
     todoElement.classList.add("to-do-element");
+    todoElement.classList.add(item.priority + "-priority");
     let sectionDiv = document.createElement("div");
     sectionDiv.classList.add("sections");
 
@@ -40,6 +41,8 @@ const todoItemManager = (() => {
       removeItem(project, item, todoElement, todoList);
     });
 
+    let checkbox = leftSection.querySelector(".to-do-checbox");
+    checkDoneItem(todoElement, checkbox);
     return todoElement;
   }
 
@@ -55,6 +58,15 @@ const todoItemManager = (() => {
     });
   }
 
+  function checkDoneItem(todoElement, checkbox) {
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) {
+        todoElement.classList.add("todo-done");
+      } else {
+        todoElement.classList.remove("todo-done");
+      }
+    });
+  }
   function showAddItemDialog(addItemBtn) {
     let dialog = document.querySelector("#add-item-dialog");
     addItemBtn.addEventListener("click", () => {
@@ -89,7 +101,12 @@ const todoItemManager = (() => {
     newSubmitBtn.addEventListener("click", (e) => {
       e.preventDefault();
       if (itemName.value != "" || dueDate.value != "") {
-        project.addItem(itemName.value, itemDesc.value, dueDate.value);
+        project.addItem(
+          itemName.value,
+          itemDesc.value,
+          dueDate.value,
+          itemPriority.value
+        );
         form.reset();
         dialog.close();
         renderAllItems(ulTodoList, project);
