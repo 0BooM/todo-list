@@ -146,6 +146,16 @@ main ul li {
   box-shadow: 6px 6px 10px -6px rgba(66, 68, 90, 1);
 }
 
+.low-priority {
+  background-color: #bfdbfe;
+}
+.medium-priority {
+  background-color: #fef08a;
+}
+.high-priority {
+  background-color: #fecaca;
+}
+
 main ul li div {
   display: flex;
   align-items: center;
