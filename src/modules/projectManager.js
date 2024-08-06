@@ -45,20 +45,44 @@ const ProjectManager = (function () {
       let projectDiv = document.createElement("div");
       projectDiv.classList.add("project");
 
-      let icon = document.createElement("span");
-      icon.classList.add("material-symbols-outlined");
-      icon.textContent = "edit";
+      let editIcon = document.createElement("span");
+      editIcon.classList.add("material-symbols-outlined");
+      editIcon.textContent = "edit";
 
       let projectName = document.createElement("h3");
       projectName.textContent = project.title;
 
-      projectDiv.appendChild(icon);
+      let removeBtn = document.createElement("span");
+      removeBtn.classList.add("material-symbols-outlined");
+      removeBtn.classList.add("remove-icon");
+      removeBtn.textContent = "delete";
+      projectDiv.appendChild(editIcon);
       projectDiv.appendChild(projectName);
+      projectDiv.appendChild(removeBtn);
       projectsList.appendChild(projectDiv);
 
       projectDiv.addEventListener("click", () =>
         setActiveProject(project, projectDiv)
       );
+      removeProject(removeBtn, project);
+    });
+  }
+
+  function removeProject(button, project) {
+    button.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const index = projects.indexOf(project);
+      if (index > -1) {
+        projects.splice(index, 1);
+        console.log("Updated projects:", projects);
+      }
+
+      let projectContent = document.querySelector(".project-content");
+      if (projectContent) {
+        projectContent.innerHTML = "";
+      }
+
+      showProjectsOnNavbar();
     });
   }
 
