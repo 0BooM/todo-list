@@ -1,6 +1,6 @@
 import { projects } from "./projectManager.js";
 import Project from "./project.js";
-
+import { format, parseISO } from "date-fns";
 const todoItemManager = (() => {
   function renderItem(item, project, todoList) {
     let todoElement = document.createElement("li");
@@ -15,7 +15,7 @@ const todoItemManager = (() => {
 
     let rightSection = document.createElement("div");
     rightSection.classList.add("right-section");
-    rightSection.innerHTML = `<p class="due-date">Due: 04-08-2024</p>`;
+    rightSection.innerHTML = `<p class="due-date">Due: ${item.dueDate}</p>`;
 
     let removeBtn = document.createElement("span");
     removeBtn.classList.add("remove-icon", "material-symbols-outlined");
@@ -83,14 +83,13 @@ const todoItemManager = (() => {
     let itemPriority = document.querySelector("#todo-priority");
     let itemDesc = document.querySelector("#todo-desc");
 
-    // Usuwamy poprzednie nasłuchiwacze
     let newSubmitBtn = submitBtn.cloneNode(true);
     submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
 
     newSubmitBtn.addEventListener("click", (e) => {
       e.preventDefault();
       if (itemName.value != "" || dueDate.value != "") {
-        project.addItem(itemName.value, itemDesc.value);
+        project.addItem(itemName.value, itemDesc.value, dueDate.value);
         form.reset();
         dialog.close();
         renderAllItems(ulTodoList, project);
