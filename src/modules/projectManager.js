@@ -1,10 +1,8 @@
 import Project from "./project.js";
 import todoItemManager from "./todoItemManager.js";
+import localStorageManager from "./localStorage.js";
 
-let projects = [
-  new Project("Sample Project 1"),
-  new Project("Sample Project 2"),
-];
+let projects = localStorageManager.loadProjects();
 
 const ProjectManager = (function () {
   function showInputOnAddButtonClick() {
@@ -30,6 +28,7 @@ const ProjectManager = (function () {
       ) {
         let newProject = new Project(projectName.value);
         projects.push(newProject);
+        localStorageManager.saveProjects(projects);
         console.log(projects);
         projectName.value = "";
         showProjectsOnNavbar();
@@ -74,6 +73,7 @@ const ProjectManager = (function () {
       const index = projects.indexOf(project);
       if (index > -1) {
         projects.splice(index, 1);
+        localStorageManager.saveProjects(projects);
         console.log("Updated projects:", projects);
       }
 

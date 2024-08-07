@@ -1,6 +1,7 @@
-import { projects } from "./projectManager.js";
-import Project from "./project.js";
+import { projects } from "./projectManager.js"; // Import projects from projectManager
+import localStorageManager from "./localStorage.js";
 import { format, parseISO } from "date-fns";
+
 const todoItemManager = (() => {
   function renderItem(item, project, todoList) {
     let todoElement = document.createElement("li");
@@ -99,20 +100,23 @@ const todoItemManager = (() => {
     let dueDate = document.querySelector("#todo-duedate");
     let itemPriority = document.querySelector("#todo-priority");
     let itemDesc = document.querySelector("#todo-desc");
-    let itemChecked = document.querySelector(".to-do-checbox");
+    let itemChecked = form.querySelector(".to-do-checbox"); // Ensure to query within the form
+
     let newSubmitBtn = submitBtn.cloneNode(true);
     submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
 
     newSubmitBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      if (itemName.value != "" || dueDate.value != "") {
+      if (itemName.value !== "" && dueDate.value !== "") {
         project.addItem(
           itemName.value,
           itemDesc.value,
           dueDate.value,
           itemPriority.value,
-          itemChecked.checked
+          itemChecked ? itemChecked.checked : false
         );
+
+        localStorageManager.saveProjects(projects);
         form.reset();
         dialog.close();
         renderAllItems(ulTodoList, project);
@@ -133,6 +137,7 @@ const todoItemManager = (() => {
     const itemIndex = project.items.indexOf(item);
     if (itemIndex > -1) {
       project.items.splice(itemIndex, 1);
+      localStorageManager.saveProjects(projects);
     }
     todoList.removeChild(todoElement);
   }
