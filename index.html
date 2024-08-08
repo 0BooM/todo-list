@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <title>Just DO it</title>
+  <script defer src="runtime.js"></script><script defer src="main.js"></script></head>
+  <body>
+    <header>
+      <span class="header-icon material-symbols-outlined"> done_all </span>
+      <h1>JUST <span class="do-logo">DO</span> IT</h1>
+    </header>
+    <nav class="navbar">
+      <div class="projects-title">
+        <span class="material-symbols-outlined list-icon"> list </span>
+        <h2 class="your-projects"><span>YOUR</span> projects</h2>
+      </div>
+      <div class="projects-list">
+        <div class="project">
+          <span class="material-symbols-outlined"> edit </span>
+          <h3>Project 1</h3>
+        </div>
+        <div class="project">
+          <span class="material-symbols-outlined"> edit </span>
+          <h3>Your second project that you made</h3>
+        </div>
+        <div class="project">
+          <span class="material-symbols-outlined"> edit </span>
+          <h3>Third one</h3>
+        </div>
+      </div>
+      <hr />
+      <div class="display-setting">
+        <label for="add-project-input"
+          >Project name (To submit, click Add Project)</label
+        >
+        <input type="text" class="add-project-input" id="add-project-input" />
+      </div>
+      <div class="add-project">
+        <span class="material-symbols-outlined"> add </span>
+        <h3>New project</h3>
+      </div>
+    </nav>
+    <main class="project-content"></main>
+    <dialog id="add-item-dialog">
+      <span class="close-icon material-symbols-outlined"> close </span>
+      <form action="">
+        <label for="todo-title">
+          To-Do Item Name:
+          <input
+            type="text"
+            name="todo-title"
+            id="todo-title"
+            placeholder="At least 1 character"
+          />
+        </label>
+        <label for="todo-duedate">
+          To-Do Item Duedate:
+          <input type="date" name="todo-duedate" id="todo-duedate" />
+        </label>
+        <label for="todo-priority">
+          To-Do Item Priority:
+          <select name="todo-priority" id="todo-priority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+        <label for="todo-desc">
+          Description:
+          <textarea
+            name="todo-desc"
+            id="todo-desc"
+            placeholder="Your description..."
+            rows="3"
+          ></textarea>
+        </label>
+        <input type="submit" value="SUBMIT" id="submit-button" />
+      </form>
+    </dialog>
+  </body>
+</html>
